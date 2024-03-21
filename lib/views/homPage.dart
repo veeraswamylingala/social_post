@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:motion_tab_bar/MotionTabBar.dart';
 import 'package:motion_tab_bar/MotionTabBarController.dart';
+import 'package:sample/databaseHelper.dart';
 import 'package:sample/views/postFeedPage.dart';
 import 'package:sample/views/profilepAGE.dart';
-
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,10 +16,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   MotionTabBarController? _motionTabBarController;
+  final DatabaseHelper _helper = DatabaseHelper();
 
   @override
   void initState() {
     super.initState();
+    _helper.init();
     _motionTabBarController = MotionTabBarController(
       initialIndex: 0,
       length: 2,
