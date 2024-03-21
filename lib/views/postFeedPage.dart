@@ -33,18 +33,20 @@ class _PostFeedPageState extends State<PostFeedPage> {
         List<PostModel> localPosts = [];
         log(value.toString());
         for (var e in value) {
-          File? secletedImage;
-          //image decoding
-          if (e['picture'] != null && e['picture'] != "") {
-            var img = base64Decode(e['picture']);
-            secletedImage = await File("${"${path.path}/${e['id']}"}.png")
-                .writeAsBytes(img);
-          }
+          // File? secletedImage;
+          // //image decoding
+          // if (e['picture'] != null && e['picture'] != "") {
+          //   var img = base64Decode(e['picture']);
+          //   secletedImage = await File("${"${path.path}/${e['id']}"}.png")
+          //       .writeAsBytes(img);
+          // }
           localPosts.add(PostModel(
               id: e['id'],
               postTitle: e['title'],
               postDescription: e['description'],
-              postImage: secletedImage,
+              postImage: e['picture'] != null && e['picture'] != ""
+                  ? File(e['picture'])
+                  : null,
               postCreatedAt: e['datetime']));
         }
         setState(() {

@@ -62,18 +62,19 @@ class _AddPostPageState extends State<AddPostPage> {
                   ),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      String img = "";
-                      if (secletedImage != null) {
-                        final bytes =
-                            File(secletedImage!.path).readAsBytesSync();
+                      // String img = "";
+                      // if (secletedImage != null) {
+                      //   final bytes =
+                      //       File(secletedImage!.path).readAsBytesSync();
 
-                        img = base64Encode(bytes);
-                      }
+                      //   img = base64Encode(bytes);
+                      // }
 
                       _dbHelper.insert({
                         "title": _titleTFC.text,
                         "description": _descTFC.text,
-                        "picture": img,
+                        "picture":
+                            secletedImage != null ? secletedImage!.path : "",
                         "datetime": DateFormat('yyyy-MM-dd – kk:mm')
                             .format(DateTime.now())
                       }).then((value) {
